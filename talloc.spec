@@ -1,8 +1,7 @@
 Summary:	The talloc library
 Name:		libtalloc
 Version:	2.0.1
-DIE FOR NOW (we use libtalloc from samba)
-Release:	0.1
+Release:	1
 License:	LGPL v3+
 Group:		Daemons
 URL:		http://talloc.samba.org/
