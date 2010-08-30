@@ -4,6 +4,7 @@ Summary:	The talloc library
 Name:		libtalloc
 Version:	2.0.1
 Release:	1
+Epoch:		2
 License:	LGPL v3+
 Group:		Daemons
 URL:		http://talloc.samba.org/
@@ -20,7 +21,7 @@ A library that implements a hierarchical allocator with destructors.
 %package devel
 Summary:	Developer tools for the Talloc library
 Group:		Development/Libraries
-Requires:	libtalloc = %{version}-%{release}
+Requires:	libtalloc = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files needed to develop programs that link against the Talloc
