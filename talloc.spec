@@ -3,7 +3,7 @@
 Summary:	The talloc library
 Name:		libtalloc
 Version:	2.0.1
-Release:	1
+Release:	2
 Epoch:		2
 License:	LGPL v3+
 Group:		Daemons
@@ -22,6 +22,7 @@ A library that implements a hierarchical allocator with destructors.
 Summary:	Developer tools for the Talloc library
 Group:		Development/Libraries
 Requires:	libtalloc = %{epoch}:%{version}-%{release}
+Provides:	pkgconfig(talloc)
 
 %description devel
 Header files needed to develop programs that link against the Talloc
