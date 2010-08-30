@@ -3,7 +3,7 @@
 Summary:	The talloc library
 Name:		libtalloc
 Version:	2.0.1
-Release:	2
+Release:	3
 Epoch:		2
 License:	LGPL v3+
 Group:		Daemons
@@ -56,8 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libtalloc.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtalloc.so.2
+%attr(755,root,root) %{_libdir}/libtalloc.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
