@@ -3,7 +3,7 @@
 Summary:	The talloc library
 Name:		libtalloc
 Version:	2.0.1
-Release:	4
+Release:	5
 Epoch:		2
 License:	LGPL v3+
 Group:		Daemons
@@ -53,7 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
-%triggerpostun -p /sbin/postshell -- %{name} < 2:2.0.1-3
+
+%triggerpostun -p /sbin/postshell -- %{name} < 2:2.0.1-5
+-rm -f %{_libdir}/libtalloc.so.2
 /sbin/ldconfig
 
 %files
