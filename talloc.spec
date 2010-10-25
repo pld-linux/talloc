@@ -5,7 +5,7 @@ Version:	2.0.1
 Release:	5
 Epoch:		2
 License:	LGPL v3+
-Group:		Daemons
+Group:		Libraries
 Source0:	http://samba.org/ftp/talloc/talloc-%{version}.tar.gz
 # Source0-md5:	c6e736540145ca58cb3dcb42f91cf57b
 URL:		http://talloc.samba.org/
