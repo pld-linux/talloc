@@ -1,38 +1,59 @@
-# TODO
-# - static package
-Summary:	The talloc library
+Summary:	The talloc library - a hierarchical pool based memory system
+Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		libtalloc
 Version:	2.0.1
 Release:	5
 Epoch:		2
 License:	LGPL v3+
 Group:		Daemons
-URL:		http://talloc.samba.org/
 Source0:	http://samba.org/ftp/talloc/talloc-%{version}.tar.gz
 # Source0-md5:	c6e736540145ca58cb3dcb42f91cf57b
-BuildRequires:	autoconf
+URL:		http://talloc.samba.org/
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	docbook-style-xsl
-BuildRequires:	libxslt
+BuildRequires:	libxslt-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A library that implements a hierarchical allocator with destructors.
+The talloc library implements a hierarchical allocator with
+destructors.
+
+%description -l pl.UTF-8
+Biblioteka talloc jest implementacją systemu zarządzania pamięcią
+opartego na hierarchicznej puli wraz z destruktorami.
 
 %package devel
-Summary:	Developer tools for the Talloc library
+Summary:	Development files for the talloc library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki talloc
 Group:		Development/Libraries
-Requires:	libtalloc = %{epoch}:%{version}-%{release}
-Provides:	pkgconfig(talloc)
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
-Header files needed to develop programs that link against the Talloc
-library.
+Development files needed to create programs that link against the
+talloc library.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne potrzebne do tworzenia programów używających
+biblioteki talloc.
+
+%package static
+Summary:	Static talloc library
+Summary(pl.UTF-8):	Statyczna biblioteka talloc
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+
+%description static
+Static talloc library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka talloc.
 
 %prep
 %setup -q -n talloc-%{version}
 
 %build
-./autogen.sh
+%{__autoconf} -I libreplace
+%{__autoheader} -I libreplace
 %configure
 %{__make}
 
@@ -42,11 +63,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -s libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so
-ln -s libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so.2
+ln -sf libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so
+ln -sf libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so.2
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/libtalloc.a
-rm -f $RPM_BUILD_ROOT%{_datadir}/swig/*/talloc.i
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/swig/*/talloc.i
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,7 +85,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/talloc.h
 %attr(755,root,root) %{_libdir}/libtalloc.so
+%{_includedir}/talloc.h
 %{_pkgconfigdir}/talloc.pc
 %{_mandir}/man3/talloc.3*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libtalloc.a
