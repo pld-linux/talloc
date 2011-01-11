@@ -1,17 +1,18 @@
 Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		libtalloc
-Version:	2.0.1
-Release:	5
+Version:	2.0.5
+Release:	1
 Epoch:		2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://samba.org/ftp/talloc/talloc-%{version}.tar.gz
-# Source0-md5:	c6e736540145ca58cb3dcb42f91cf57b
+# Source0-md5:	6e3fdfbc43dde8ccba27b6af894b8fb2
 URL:		http://talloc.samba.org/
-BuildRequires:	autoconf >= 2.50
 BuildRequires:	docbook-style-xsl
 BuildRequires:	libxslt-progs
+BuildRequires:	python >= 1:2.4.2
+BuildRequires:	python-devel >= 1:2.4.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,6 +28,7 @@ Summary:	Development files for the talloc library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki talloc
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Obsoletes:	libtalloc-static
 
 %description devel
 Development files needed to create programs that link against the
@@ -36,37 +38,53 @@ talloc library.
 Pliki programistyczne potrzebne do tworzenia programów używających
 biblioteki talloc.
 
-%package static
-Summary:	Static talloc library
-Summary(pl.UTF-8):	Statyczna biblioteka talloc
+%package -n python-talloc
+Summary:	Python binding for talloc library
+Summary(pl.UTF-8):	Wiązanie Pythona do biblioteki talloc
+Group:		Libraries/Python
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	python-libs >= 1:2.4.2
+
+%description -n python-talloc
+Python binding for talloc library.
+
+%description -n python-talloc -l pl.UTF-8
+Wiązanie Pythona do biblioteki talloc.
+
+%package -n python-talloc-devel
+Summary:	Development files for pytalloc-util library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki pytalloc-util
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	python-talloc = %{epoch}:%{version}-%{release}
+Requires:	python-devel >= 1:2.4.2
 
-%description static
-Static talloc library.
+%description -n python-talloc-devel
+Development files for pytalloc-util library.
 
-%description static -l pl.UTF-8
-Statyczna biblioteka talloc.
+%description -n python-talloc-devel -l pl.UTF-8
+Pliki programistyczne biblioteki pytalloc-util.
 
 %prep
 %setup -q -n talloc-%{version}
 
 %build
-%{__autoconf} -I libreplace
-%{__autoheader} -I libreplace
-%configure
-%{__make}
+# note: configure in fact is waf call
+CC="%{__cc}" \
+CFLAGS="%{rpmcflags}" \
+PYTHONDIR=%{py_sitedir} \
+./configure \
+	--prefix=%{_prefix} \
+	--libdir=%{_libdir}
+
+%{__make} \
+	V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-ln -sf libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so
-ln -sf libtalloc.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libtalloc.so.2
-
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/swig/*/talloc.i
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,11 +103,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc talloc_guide.txt
 %attr(755,root,root) %{_libdir}/libtalloc.so
 %{_includedir}/talloc.h
 %{_pkgconfigdir}/talloc.pc
 %{_mandir}/man3/talloc.3*
 
-%files static
+%files -n python-talloc
 %defattr(644,root,root,755)
-%{_libdir}/libtalloc.a
+%attr(755,root,root) %{_libdir}/libpytalloc-util.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpytalloc-util.so.2
+%attr(755,root,root) %{py_sitedir}/talloc.so
+
+%files -n python-talloc-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libpytalloc-util.so
+%{_includedir}/pytalloc.h
+%{_pkgconfigdir}/pytalloc-util.pc
