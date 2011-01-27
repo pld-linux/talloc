@@ -9,10 +9,13 @@ Group:		Libraries
 Source0:	http://samba.org/ftp/talloc/talloc-%{version}.tar.gz
 # Source0-md5:	6e3fdfbc43dde8ccba27b6af894b8fb2
 URL:		http://talloc.samba.org/
+BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	libxslt-progs
 BuildRequires:	python >= 1:2.4.2
 BuildRequires:	python-devel >= 1:2.4.2
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,8 +59,8 @@ Summary:	Development files for pytalloc-util library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki pytalloc-util
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	python-talloc = %{epoch}:%{version}-%{release}
 Requires:	python-devel >= 1:2.4.2
+Requires:	python-talloc = %{epoch}:%{version}-%{release}
 
 %description -n python-talloc-devel
 Development files for pytalloc-util library.
