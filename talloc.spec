@@ -1,12 +1,11 @@
 Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
-Name:		libtalloc
+Name:		talloc
 Version:	2.0.7
-Release:	1
-Epoch:		2
+Release:	2
 License:	LGPL v3+
 Group:		Libraries
-Source0:	http://samba.org/ftp/talloc/talloc-%{version}.tar.gz
+Source0:	http://samba.org/ftp/talloc/%{name}-%{version}.tar.gz
 # Source0-md5:	dbfb3146f4cc47054e13b8a2988299f9
 URL:		http://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
@@ -16,6 +15,8 @@ BuildRequires:	python >= 1:2.4.2
 BuildRequires:	python-devel >= 1:2.4.2
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
+Provides:	libtalloc = 2:%{version}-%{release}
+Obsoletes:	libtalloc < 2:2.0.7-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +31,9 @@ opartego na hierarchicznej puli wraz z destruktorami.
 Summary:	Development files for the talloc library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki talloc
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
+Provides:	libtalloc-devel = 2:%{version}-%{release}
+Obsoletes:	libtalloc-devel < 2:2.0.7-1
 Obsoletes:	libtalloc-static
 
 %description devel
@@ -45,7 +48,7 @@ biblioteki talloc.
 Summary:	Python binding for talloc library
 Summary(pl.UTF-8):	Wiązanie Pythona do biblioteki talloc
 Group:		Libraries/Python
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	python-libs >= 1:2.4.2
 
 %description -n python-talloc
@@ -58,9 +61,9 @@ Wiązanie Pythona do biblioteki talloc.
 Summary:	Development files for pytalloc-util library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki pytalloc-util
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
 Requires:	python-devel >= 1:2.4.2
-Requires:	python-talloc = %{epoch}:%{version}-%{release}
+Requires:	python-talloc = %{version}-%{release}
 
 %description -n python-talloc-devel
 Development files for pytalloc-util library.
@@ -69,7 +72,7 @@ Development files for pytalloc-util library.
 Pliki programistyczne biblioteki pytalloc-util.
 
 %prep
-%setup -q -n talloc-%{version}
+%setup -q
 
 %build
 # note: configure in fact is waf call
@@ -95,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%triggerpostun -p /sbin/postshell -- %{name} < 2:2.0.1-5
+%triggerpostun -p /sbin/postshell -- libtalloc < 2:2.0.1-5
 -rm -f %{_libdir}/libtalloc.so.2
 /sbin/ldconfig
 
