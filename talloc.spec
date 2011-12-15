@@ -6,7 +6,7 @@ Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		talloc
 Version:	2.0.6
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v3+
 Group:		Libraries
@@ -68,7 +68,7 @@ Summary(pl.UTF-8):	Pliki programistyczne biblioteki pytalloc-util
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Requires:	python-devel >= 1:2.4.2
-Requires:	python-talloc = %{version}-%{release}
+Requires:	python-talloc = %{epoch}:%{version}-%{release}
 
 %description -n python-talloc-devel
 Development files for pytalloc-util library.
