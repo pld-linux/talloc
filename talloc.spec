@@ -1,17 +1,13 @@
-#
-# WARNING: check if samba builds with new version before updating!
-# samba (as of 3.6.3) refers to py_talloc_* symbols while talloc 2.0.7 changed them to pytalloc_*
-#
 Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		talloc
-Version:	2.0.6
-Release:	4
+Version:	2.0.8
+Release:	1
 Epoch:		2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://samba.org/ftp/talloc/%{name}-%{version}.tar.gz
-# Source0-md5:	bd1be34297e89b27a394b49d5182550e
+# Source0-md5:	7857200b58a8617ca18fe2c91296cd93
 URL:		http://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
