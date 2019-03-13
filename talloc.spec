@@ -101,8 +101,8 @@ Summary:	Development files for Python 3 pytalloc-util library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki pytalloc-util dla Pythona 3
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	python-devel >= 1:3.2
-Requires:	python-talloc = %{epoch}:%{version}-%{release}
+Requires:	python3-devel >= 1:3.2
+Requires:	python3-talloc = %{epoch}:%{version}-%{release}
 
 %description -n python3-talloc-devel
 Development files for Python 3 pytalloc-util library.
