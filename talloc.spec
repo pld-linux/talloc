@@ -144,6 +144,12 @@ rm -rf $RPM_BUILD_ROOT
 -rm -f %{_libdir}/libtalloc.so.2
 /sbin/ldconfig
 
+%post	-n python-talloc -p /sbin/ldconfig
+%postun	-n python-talloc -p /sbin/ldconfig
+
+%post	-n python3-talloc -p /sbin/ldconfig
+%postun	-n python3-talloc -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtalloc.so.*.*.*
