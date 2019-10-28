@@ -6,7 +6,7 @@ Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		talloc
 Version:	2.1.16
-Release:	1
+Release:	2
 Epoch:		2
 License:	LGPL v3+
 Group:		Libraries
