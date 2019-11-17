@@ -23,9 +23,6 @@ Obsoletes:	python-talloc
 Obsoletes:	python-talloc-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# %{_includedir}/pytalloc.h shared between python*-talloc-devel
-%define		_duplicate_files_terminate_build	0
-
 %description
 The talloc library implements a hierarchical allocator with
 destructors.
