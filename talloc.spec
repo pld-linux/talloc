@@ -1,4 +1,3 @@
-#
 Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		talloc
@@ -19,6 +18,7 @@ BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	rpm-pythonprov
 Provides:	libtalloc = 2:%{version}-%{release}
 Obsoletes:	libtalloc < 2:2.0.7-2
+# talloc 2.2+ dropped python2 support
 Obsoletes:	python-talloc
 Obsoletes:	python-talloc-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
