@@ -8,7 +8,7 @@ License:	LGPL v3+
 Group:		Libraries
 Source0:	https://www.samba.org/ftp/talloc/%{name}-%{version}.tar.gz
 # Source0-md5:	ce40593428c0de6b85946189dcc37b5e
-URL:		http://talloc.samba.org/
+URL:		https://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	libxslt-progs
