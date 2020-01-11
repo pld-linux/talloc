@@ -11,6 +11,7 @@ Source0:	https://www.samba.org/ftp/talloc/%{name}-%{version}.tar.gz
 URL:		https://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	libbsd-devel
 BuildRequires:	libxslt-progs
 BuildRequires:	python3 >= 1:3.2
 BuildRequires:	python3-devel >= 1:3.2
