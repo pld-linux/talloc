@@ -1,13 +1,13 @@
 Summary:	The talloc library - a hierarchical pool based memory system
 Summary(pl.UTF-8):	Biblioteka talloc - system przydzielania pamięci oparty na hierarchicznej puli
 Name:		talloc
-Version:	2.3.1
-Release:	2
+Version:	2.3.2
+Release:	1
 Epoch:		2
 License:	LGPL v3+
 Group:		Libraries
-Source0:	https://www.samba.org/ftp/talloc/%{name}-%{version}.tar.gz
-# Source0-md5:	ce40593428c0de6b85946189dcc37b5e
+Source0:	https://download.samba.org/pub/talloc/%{name}-%{version}.tar.gz
+# Source0-md5:	3376a86bdf9dd4abc6b8d8d645390902
 URL:		https://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
