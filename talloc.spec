@@ -20,8 +20,8 @@ BuildRequires:	rpm-pythonprov
 Provides:	libtalloc = 2:%{version}-%{release}
 Obsoletes:	libtalloc < 2:2.0.7-2
 # talloc 2.2+ dropped python2 support
-Obsoletes:	python-talloc
-Obsoletes:	python-talloc-devel
+Obsoletes:	python-talloc < 2:2.2
+Obsoletes:	python-talloc-devel < 2:2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +39,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	libtalloc-devel = 2:%{version}-%{release}
 Obsoletes:	libtalloc-devel < 2:2.0.7-2
-Obsoletes:	libtalloc-static
+Obsoletes:	libtalloc-static < 2:2.0.5
 
 %description devel
 Development files needed to create programs that link against the
