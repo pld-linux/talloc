@@ -10,7 +10,7 @@ Source0:	https://download.samba.org/pub/talloc/%{name}-%{version}.tar.gz
 # Source0-md5:	02fb35ead70f73af2518234ef3cb1073
 URL:		https://talloc.samba.org/
 BuildRequires:	docbook-dtd42-xml
-BuildRequires:	docbook-style-xsl
+BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	libbsd-devel
 BuildRequires:	libxslt-progs
 BuildRequires:	python3 >= 1:3.2
